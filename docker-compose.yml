@@ -1,0 +1,15 @@
+version: '2'
+services:
+  users-service:
+    build: ./node-ms
+    container_name: user_service
+    ports:
+     - "8123:8123"
+    links:
+      - db:db
+    depends_on:
+     - db
+    environment:
+     -  DATABASE_HOST=db
+  db:
+    build: ./mysql-db-ms
